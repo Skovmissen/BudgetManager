@@ -17,7 +17,7 @@ namespace BudgetManagerV2.Controllers
         // GET: Transactions
         public ActionResult Index(string sortOrder, string searchString)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.ValueSortParm = sortOrder == "Value" ? "value_desc" : "Value";
             ViewBag.CategorySortParm = sortOrder == "FK_Category" ? "category_desc" : "FK_Category";
@@ -28,8 +28,11 @@ namespace BudgetManagerV2.Controllers
                 transaction = transaction.Where(t => t.Text.Contains(searchString));
             }
 
-            transaction = transaction.OrderBy(s => s.Text);
-
+            transaction = transaction.OrderBy(s => s.Date);
+            if (sortOrder == "name")
+            {
+                transaction = transaction.OrderBy(t => t.Text);
+            }
             if (sortOrder == "name_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Text);
