@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BudgetManagerV2.Models.Category>
+
+<div id="TreeView">
+    <h2>Category Treeview</h2>
+    @helper ShowTree(ICollection<BudgetManagerV2.Models.Category> cat)
+    {
+        <ul>
+            @foreach (var item in cat)
+            {
+                if (cat.Last() == item)
+                {
+                    @:<li class="last">
+                }
+                else
+                {
+                    @:<li>
+                }
+                @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
+                    if (item.Category1.Any())
+                    {
+                        @ShowTree(item.Category1)
+                    }
+                @:</li>
+            }
+        </ul>
+    }
+
+    <ul class="tree">
+        @{
+            List<BudgetManagerV2.Models.Category> parents = new List<BudgetManagerV2.Models.Category>();
+            foreach (var item in Model)
+            {
+                if (item.Cat_ID == null)
+                {
+                    parents.Add(item);
+                }
+            }
+
+            foreach (var item in parents)
+            {
+                if (item == parents.Last())
+                {
+                    @:<li class="last">
+                }
+                else
+                {
+                    @:<li>
+                }
+                    @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
+                    @ShowTree(item.Category1)
+                @:</li>
+            }
+        }
+    </ul>
+     @Html.ActionLink("Create New Category", "Create", null, new { @class = "fat-link mt-50" })
+</div>
+@if (ViewBag.Message != null)
+{
+    <script>
+
+
+alert('@ViewBag.Message');
+
+    </script>
+
+}
