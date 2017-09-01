@@ -29,27 +29,27 @@ namespace BudgetManagerV2.Controllers
             {
                 transaction = transaction.OrderByDescending(t => t.Text);
             }
-            if (sortOrder == "Date")
+            else if (sortOrder == "Date")
             {
                 transaction = transaction.OrderBy(t => t.Date);
             }
-            if (sortOrder == "Date_desc")
+            else if(sortOrder == "Date_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Date);
             }
-            if (sortOrder == "Value")
+            else if(sortOrder == "Value")
             {
                 transaction = transaction.OrderBy(t => t.Value);
             }
-            if (sortOrder == "value_desc")
+            else if(sortOrder == "value_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Value);
             }
-            if (sortOrder == "FK_Category")
+            else if(sortOrder == "FK_Category")
             {
                 transaction = transaction.OrderBy(t => t.Category.Name);
             }
-            if (sortOrder == "category_desc")
+            else if(sortOrder == "category_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Category.Name);
             }
