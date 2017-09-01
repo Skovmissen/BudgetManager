@@ -28,9 +28,13 @@ namespace BudgetManagerV2.Controllers
                 transaction = transaction.Where(t => t.Text.Contains(searchString));
             }
 
-            
+
+            transaction = transaction.OrderBy(s => s.Text);
+
+            if (sortOrder == "name_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Text);
+
             }
             if (sortOrder == "Date")
             {
