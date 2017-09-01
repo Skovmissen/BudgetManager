@@ -38,7 +38,6 @@ namespace BudgetManagerV2.Controllers
                 
             }
 
-
             transaction = transaction.OrderBy(s => s.Text);
 
             if (sortOrder == "name_desc")
@@ -50,7 +49,7 @@ namespace BudgetManagerV2.Controllers
             {
                 transaction = transaction.OrderBy(t => t.Date);
             }
-            else if(sortOrder == "Date_desc")
+            else if(sortOrder == "date_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Date);
             }
