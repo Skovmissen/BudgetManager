@@ -15,7 +15,7 @@ namespace BudgetManagerV2.Controllers
         private BudgetManagerEntities db = new BudgetManagerEntities();
 
         // GET: Transactions
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -23,33 +23,40 @@ namespace BudgetManagerV2.Controllers
             ViewBag.CategorySortParm = sortOrder == "FK_Category" ? "category_desc" : "FK_Category";
 
             var transaction = db.Transaction.Include(t => t.Category);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                transaction = transaction.Where(t => t.Text.Contains(searchString));
+            }
+
+
             transaction = transaction.OrderBy(s => s.Text);
 
             if (sortOrder == "name_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Text);
+
             }
-            if (sortOrder == "Date")
+            else if (sortOrder == "Date")
             {
                 transaction = transaction.OrderBy(t => t.Date);
             }
-            if (sortOrder == "Date_desc")
+            else if(sortOrder == "Date_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Date);
             }
-            if (sortOrder == "Value")
+            else if(sortOrder == "Value")
             {
                 transaction = transaction.OrderBy(t => t.Value);
             }
-            if (sortOrder == "value_desc")
+            else if(sortOrder == "value_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Value);
             }
-            if (sortOrder == "FK_Category")
+            else if(sortOrder == "FK_Category")
             {
                 transaction = transaction.OrderBy(t => t.Category.Name);
             }
-            if (sortOrder == "category_desc")
+            else if(sortOrder == "category_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Category.Name);
             }
