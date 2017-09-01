@@ -12,16 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            <p>Title</p>
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Value)
+            @Html.ActionLink("Value", "Index", new { sortOrder = ViewBag.ValueSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
-            <p>Category</p>
+            @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CategorySortParm })
         </th>
     </tr>
 

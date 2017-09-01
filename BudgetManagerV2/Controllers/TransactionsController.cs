@@ -15,9 +15,45 @@ namespace BudgetManagerV2.Controllers
         private BudgetManagerEntities db = new BudgetManagerEntities();
 
         // GET: Transactions
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.ValueSortParm = sortOrder == "Value" ? "value_desc" : "Value";
+            ViewBag.CategorySortParm = sortOrder == "FK_Category" ? "category_desc" : "FK_Category";
+
             var transaction = db.Transaction.Include(t => t.Category);
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    transaction = transaction.OrderByDescending(t => t.Text);
+                    break;
+                case "Date":
+                    transaction = transaction.OrderBy(t => t.Date);
+                    break;
+                case "Date_desc":
+                    transaction = transaction.OrderByDescending(t => t.Date);
+                    break;
+                case "Value":
+                    transaction = transaction.OrderBy(t => t.Value);
+                    break;
+                case "value_desc":
+                    transaction = transaction.OrderByDescending(t => t.Value);
+                    break;
+                case "FK_Category":
+                    transaction = transaction.OrderBy(t => t.Category.Name);
+                    break;
+                case "category_desc":
+                    transaction = transaction.OrderByDescending(t => t.Category.Name);
+                    break;
+
+                default:
+                    transaction = transaction.OrderBy(s => s.Text);
+                    break;
+
+            }
             return View(transaction.ToList());
         }
 
