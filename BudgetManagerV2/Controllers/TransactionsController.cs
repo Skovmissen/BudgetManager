@@ -29,13 +29,15 @@ namespace BudgetManagerV2.Controllers
                 {
                     transaction = transaction.Where(t => t.Text.Contains(searchString));
                 }
-                else if (transaction.Where(t => t.Value.ToString() == searchString).Count() > 0)
+                else
                 {
-                    transaction = transaction.Where(t => t.Value.ToString() == searchString);
+                    int searchNumber = -1;
+                    int.TryParse(searchString, out searchNumber);
+                    if (searchNumber != -1)
+                    {
+                        transaction = transaction.Where(t => t.Value == searchNumber);
+                    }
                 }
-                
-
-                
             }
 
             transaction = transaction.OrderBy(s => s.Date);
