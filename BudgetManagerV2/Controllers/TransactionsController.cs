@@ -23,37 +23,37 @@ namespace BudgetManagerV2.Controllers
             ViewBag.CategorySortParm = sortOrder == "FK_Category" ? "category_desc" : "FK_Category";
 
             var transaction = db.Transaction.Include(t => t.Category);
+            transaction = transaction.OrderBy(s => s.Text);
 
-
-            switch (sortOrder)
+            if (sortOrder == "name_desc")
             {
-                case "name_desc":
-                    transaction = transaction.OrderByDescending(t => t.Text);
-                    break;
-                case "Date":
-                    transaction = transaction.OrderBy(t => t.Date);
-                    break;
-                case "Date_desc":
-                    transaction = transaction.OrderByDescending(t => t.Date);
-                    break;
-                case "Value":
-                    transaction = transaction.OrderBy(t => t.Value);
-                    break;
-                case "value_desc":
-                    transaction = transaction.OrderByDescending(t => t.Value);
-                    break;
-                case "FK_Category":
-                    transaction = transaction.OrderBy(t => t.Category.Name);
-                    break;
-                case "category_desc":
-                    transaction = transaction.OrderByDescending(t => t.Category.Name);
-                    break;
-
-                default:
-                    transaction = transaction.OrderBy(s => s.Text);
-                    break;
-
+                transaction = transaction.OrderByDescending(t => t.Text);
             }
+            if (sortOrder == "Date")
+            {
+                transaction = transaction.OrderBy(t => t.Date);
+            }
+            if (sortOrder == "Date_desc")
+            {
+                transaction = transaction.OrderByDescending(t => t.Date);
+            }
+            if (sortOrder == "Value")
+            {
+                transaction = transaction.OrderBy(t => t.Value);
+            }
+            if (sortOrder == "value_desc")
+            {
+                transaction = transaction.OrderByDescending(t => t.Value);
+            }
+            if (sortOrder == "FK_Category")
+            {
+                transaction = transaction.OrderBy(t => t.Category.Name);
+            }
+            if (sortOrder == "category_desc")
+            {
+                transaction = transaction.OrderByDescending(t => t.Category.Name);
+            }
+
             return View(transaction.ToList());
         }
 
