@@ -10,6 +10,18 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
+    @using (Html.BeginForm())
+    {
+        <tr>
+            <td>
+
+                 @Html.TextBox("SearchString", null, new { @placeholder = "Search in Title" })
+                <input type="submit" value="Search" id="form-control" />
+            </td>
+        </tr>
+
+
+    }
     <tr>
         <th>
             @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
@@ -24,7 +36,7 @@
             @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CategorySortParm })
         </th>
     </tr>
-
+  
     @foreach (var item in Model)
     {
         <tr>
@@ -42,12 +54,6 @@
             </td>
         </tr>
     }
-    @using (Html.BeginForm())
-    {
-        <p>
-            Find by name: @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
-        </p>
-    }
+
 
 </table>

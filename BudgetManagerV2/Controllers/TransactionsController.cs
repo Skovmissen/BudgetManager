@@ -25,7 +25,17 @@ namespace BudgetManagerV2.Controllers
             var transaction = db.Transaction.Include(t => t.Category);
             if (!String.IsNullOrEmpty(searchString))
             {
-                transaction = transaction.Where(t => t.Text.Contains(searchString));
+                if (transaction.Where(t => t.Text.Contains(searchString)).Count() > 0)
+                {
+                    transaction = transaction.Where(t => t.Text.Contains(searchString));
+                }
+                else if (transaction.Where(t => t.Value.ToString() == searchString).Count() > 0)
+                {
+                    transaction = transaction.Where(t => t.Value.ToString() == searchString);
+                }
+                
+
+                
             }
 
             transaction = transaction.OrderBy(s => s.Date);
