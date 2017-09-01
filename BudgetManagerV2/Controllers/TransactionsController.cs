@@ -15,7 +15,7 @@ namespace BudgetManagerV2.Controllers
         private BudgetManagerEntities db = new BudgetManagerEntities();
 
         // GET: Transactions
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -23,11 +23,18 @@ namespace BudgetManagerV2.Controllers
             ViewBag.CategorySortParm = sortOrder == "FK_Category" ? "category_desc" : "FK_Category";
 
             var transaction = db.Transaction.Include(t => t.Category);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                transaction = transaction.Where(t => t.Text.Contains(searchString));
+            }
+
+
             transaction = transaction.OrderBy(s => s.Text);
 
             if (sortOrder == "name_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Text);
+
             }
             else if (sortOrder == "Date")
             {
