@@ -15,7 +15,7 @@
         <tr>
             <td>
 
-                 @Html.TextBox("SearchString", null, new { @placeholder = "Search in Title" })
+                @Html.TextBox("SearchString", null, new { @placeholder = "Search in Title" })
                 <input type="submit" value="Search" id="form-control" />
             </td>
         </tr>
@@ -36,7 +36,7 @@
             @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CategorySortParm })
         </th>
     </tr>
-  
+
     @foreach (var item in Model)
     {
         <tr>

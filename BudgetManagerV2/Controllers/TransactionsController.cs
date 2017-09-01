@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BudgetManagerV2.Models;
+using GemBox.Document;
 
 namespace BudgetManagerV2.Controllers
 {
@@ -54,23 +55,23 @@ namespace BudgetManagerV2.Controllers
             {
                 transaction = transaction.OrderBy(t => t.Date);
             }
-            else if(sortOrder == "date_desc")
+            else if (sortOrder == "date_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Date);
             }
-            else if(sortOrder == "Value")
+            else if (sortOrder == "Value")
             {
                 transaction = transaction.OrderBy(t => t.Value);
             }
-            else if(sortOrder == "value_desc")
+            else if (sortOrder == "value_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Value);
             }
-            else if(sortOrder == "FK_Category")
+            else if (sortOrder == "FK_Category")
             {
                 transaction = transaction.OrderBy(t => t.Category.Name);
             }
-            else if(sortOrder == "category_desc")
+            else if (sortOrder == "category_desc")
             {
                 transaction = transaction.OrderByDescending(t => t.Category.Name);
             }
