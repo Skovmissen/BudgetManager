@@ -190,7 +190,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\lastnode.png" />
+    <Content Include="Content\node.png" />
     <Content Include="Content\StyleSheet1.css" />
+    <Content Include="Content\vline.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -217,7 +220,9 @@
     <Content Include="Models\dbContext.edmx.diagram">
       <DependentUpon>dbContext.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\BudgetManagerV2 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\BudgetManagerV220170830025024 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\BudgetProjectManager - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
