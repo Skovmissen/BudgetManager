@@ -16,9 +16,9 @@
                     @:<li>
                 }
                 @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
-                    if (item.Category1.Any())
+                    if (item.ChildrenCategory.Any())
                     {
-                        @ShowTree(item.Category1)
+                        @ShowTree(item.ChildrenCategory)
                     }
                 @:</li>
             }
@@ -47,7 +47,7 @@
                     @:<li>
                 }
                     @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
-                    @ShowTree(item.Category1)
+                    @ShowTree(item.ChildrenCategory)
                 @:</li>
             }
         }
