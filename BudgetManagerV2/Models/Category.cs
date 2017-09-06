@@ -11,7 +11,8 @@ namespace BudgetManagerV2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,7 @@ namespace BudgetManagerV2.Models
         }
     
         public int Id { get; set; }
+        [Required(ErrorMessage = "Category name is a required field")]
         public string Name { get; set; }
         public Nullable<int> Cat_ID { get; set; }
     

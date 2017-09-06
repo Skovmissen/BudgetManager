@@ -11,13 +11,18 @@ namespace BudgetManagerV2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Transaction
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "Value is a required field")]
         public Nullable<double> Value { get; set; }
+        [Required(ErrorMessage = "Text is a required field")]
         public string Text { get; set; }
+        [Required(ErrorMessage = "Date is a required field")]
         public DateTime Date { get; set; }
+        [Required(ErrorMessage = "Category is a required field")]
         public Nullable<int> FK_Category { get; set; }
     
         public virtual Category Category { get; set; }

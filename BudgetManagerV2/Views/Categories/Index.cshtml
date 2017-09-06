@@ -54,13 +54,10 @@
     </ul>
      @Html.ActionLink("Create New Category", "Create", null, new { @class = "fat-link mt-50" })
 </div>
+
 @if (ViewBag.Message != null)
 {
     <script>
-
-
-alert('@ViewBag.Message');
-
+            alert('@ViewBag.Message');
     </script>
-
 }
