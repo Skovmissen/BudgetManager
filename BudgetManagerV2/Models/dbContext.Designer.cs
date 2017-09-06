@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\bent_\Documents\Skole\3. Semester\30-08-2017 Projekt Obligatorisk\BudgetManagerGitHub\BudgetManager\BudgetManagerV2\Models\dbContext.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\skovm\OneDrive - IT Center Nord\Skole\3.semester\Projects\GitBudgetManager\BudgetManager\BudgetManagerV2\Models\dbContext.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

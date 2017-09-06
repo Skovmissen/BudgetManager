@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<BudgetManagerV2.Models.Category>
 
 <div id="TreeView">
+   
     <h2>Category Treeview</h2>
+
+    @Html.ActionLink("Create New Category", "Create", null, new { @class = "top-link fat-link"})
+    
     @helper ShowTree(ICollection<BudgetManagerV2.Models.Category> cat)
     {
         <ul>
@@ -16,9 +20,9 @@
                     @:<li>
                 }
                 @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
-                    if (item.Category1.Any())
+                    if (item.ChildrenCategory.Any())
                     {
-                        @ShowTree(item.Category1)
+                        @ShowTree(item.ChildrenCategory)
                     }
                 @:</li>
             }
@@ -47,20 +51,16 @@
                     @:<li>
                 }
                     @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
-                    @ShowTree(item.Category1)
+                    @ShowTree(item.ChildrenCategory)
                 @:</li>
             }
         }
     </ul>
-     @Html.ActionLink("Create New Category", "Create", null, new { @class = "fat-link mt-50" })
 </div>
+
 @if (ViewBag.Message != null)
 {
     <script>
-
-
-alert('@ViewBag.Message');
-
+            alert('@ViewBag.Message');
     </script>
-
 }
