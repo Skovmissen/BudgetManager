@@ -17,28 +17,27 @@ namespace BudgetManagerV2.Controllers
         // GET: Transactions
         public ActionResult Index(string sortOrder, string searchString)
         {
+
             ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.ValueSortParm = sortOrder == "Value" ? "value_desc" : "Value";
             ViewBag.CategorySortParm = sortOrder == "FK_Category" ? "category_desc" : "FK_Category";
 
-            var transaction = db.Transaction.Include(t => t.Category);
-            if (!String.IsNullOrEmpty(searchString))
+            IQueryable<Transaction> transaction = db.Transaction.Include(t => t.Category);
+            int searchNumber;
+            if (String.IsNullOrEmpty(searchString))
             {
-                if (transaction.Where(t => t.Text.Contains(searchString)).Count() > 0)
-                {
-                    transaction = transaction.Where(t => t.Text.Contains(searchString));
-                }
-                else
-                {
-                    int searchNumber = -1;
-                    int.TryParse(searchString, out searchNumber);
-                    if (searchNumber != -1)
-                    {
-                        transaction = transaction.Where(t => t.Value == searchNumber);
-                    }
-                }
+                ViewBag.Message = "Your string is empty";
             }
+            else if (transaction.Where(t => t.Text.Contains(searchString)).Count() > 0)
+            {
+                transaction = transaction.Where(t => t.Text.Contains(searchString));
+            }
+            else if (int.TryParse(searchString, out searchNumber))
+            {
+                transaction = transaction.Where(t => t.Value == searchNumber);
+            }
+
 
             transaction = transaction.OrderBy(s => s.Date);
             if (sortOrder == "name")
