@@ -10,23 +10,24 @@
     @helper ShowTree(ICollection<BudgetManagerV2.Models.Category> cat)
     {
 
-    foreach (BudgetManagerV2.Models.Category item in cat)
-    {
-        if (cat.Last() == item)
+        foreach (BudgetManagerV2.Models.Category item in cat)
         {
-            @:<li class="last">
-                }
-        else
-        {
-            @:<li>
+            if (cat.Last() == item)
+            {
+                @:<li class="last">
+            }
+            else
+            {
+                @:<li>
             }
             @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
             if (item.ChildrenCategory.Any())
             {
-            <ul>
-                @ShowTree(item.ChildrenCategory)
-            </ul>
+                <ul>
+                    @ShowTree(item.ChildrenCategory)
+                </ul>
             }
+
             @:</li>
         }
 
