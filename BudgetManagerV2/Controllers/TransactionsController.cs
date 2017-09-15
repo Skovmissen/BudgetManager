@@ -15,9 +15,71 @@ namespace BudgetManagerV2.Controllers
         private BudgetManagerEntities db = new BudgetManagerEntities();
 
         // GET: Transactions
+<<<<<<< HEAD
         public ActionResult Index()
         {
             var transaction = db.Transaction.Include(t => t.Category);
+=======
+        public ActionResult Index(string sortOrder, string searchString)
+        {
+
+            ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.ValueSortParm = sortOrder == "Value" ? "value_desc" : "Value";
+            ViewBag.CategorySortParm = sortOrder == "FK_Category" ? "category_desc" : "FK_Category";
+
+            IQueryable<Transaction> transaction = db.Transaction.Include(t => t.Category);
+            int searchNumber;
+            if (String.IsNullOrEmpty(searchString))
+            {
+                ViewBag.Message = "Your string is empty";
+            }
+            else if (transaction.Where(t => t.Text.Contains(searchString)).Count() > 0)
+            {
+                transaction = transaction.Where(t => t.Text.Contains(searchString));
+            }
+            else if (int.TryParse(searchString, out searchNumber))
+            {
+                transaction = transaction.Where(t => t.Value == searchNumber);
+            }
+
+
+            transaction = transaction.OrderBy(s => s.Date);
+            if (sortOrder == "name")
+            {
+                transaction = transaction.OrderBy(t => t.Text);
+            }
+            if (sortOrder == "name_desc")
+            {
+                transaction = transaction.OrderByDescending(t => t.Text);
+
+            }
+            else if (sortOrder == "Date")
+            {
+                transaction = transaction.OrderBy(t => t.Date);
+            }
+            else if (sortOrder == "date_desc")
+            {
+                transaction = transaction.OrderByDescending(t => t.Date);
+            }
+            else if (sortOrder == "Value")
+            {
+                transaction = transaction.OrderBy(t => t.Value);
+            }
+            else if (sortOrder == "value_desc")
+            {
+                transaction = transaction.OrderByDescending(t => t.Value);
+            }
+            else if (sortOrder == "FK_Category")
+            {
+                transaction = transaction.OrderBy(t => t.Category.Name);
+            }
+            else if (sortOrder == "category_desc")
+            {
+                transaction = transaction.OrderByDescending(t => t.Category.Name);
+            }
+
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
             return View(transaction.ToList());
         }
 

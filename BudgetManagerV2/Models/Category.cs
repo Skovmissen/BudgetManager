@@ -18,6 +18,7 @@ namespace BudgetManagerV2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
+<<<<<<< HEAD
             this.Category1 = new HashSet<Category>();
             this.Transaction = new HashSet<Transaction>();
         }
@@ -32,6 +33,20 @@ namespace BudgetManagerV2.Models
         public virtual ICollection<Category> Category1 { get; set; }
         [Required]
         public virtual Category Category2 { get; set; }
+=======
+            this.ChildrenCategory = new HashSet<Category>();
+            this.Transaction = new HashSet<Transaction>();
+        }
+    
+        public int Id { get; set; }
+        [Required(ErrorMessage = "Category name is a required field")]
+        public string Name { get; set; }
+        public Nullable<int> Cat_ID { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Category> ChildrenCategory { get; set; }
+        public virtual Category ParentCategory { get; set; }
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transaction> Transaction { get; set; }
     }

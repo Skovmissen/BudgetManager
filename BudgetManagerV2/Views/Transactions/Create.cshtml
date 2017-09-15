@@ -40,7 +40,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FK_Category, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+<<<<<<< HEAD
                 @Html.DropDownList("FK_Category", null, htmlAttributes: new { @class = "form-control", @placeholder = "Please select a product" })
+=======
+                @Html.DropDownList("FK_Category", null, "Select a category", htmlAttributes: new { @class = "form-control" })
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
                 @Html.ValidationMessageFor(model => model.FK_Category, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{931E34C7-1F47-4093-A5BB-53AC75A86FE8}</ProjectGuid>
+    <ProjectGuid>{D08AAA0E-D2C7-41DF-ADE1-FF52444E46EE}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BudgetManager</RootNamespace>
-    <AssemblyName>BudgetManager</AssemblyName>
+    <RootNamespace>BudgetManagerV2</RootNamespace>
+    <AssemblyName>BudgetManagerV2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -152,7 +152,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SubCategoriesController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -175,10 +174,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbContext.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\SubCategory.cs">
-      <DependentUpon>dbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Transactions.cs">
+    <Compile Include="Models\Transaction.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -186,14 +182,15 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\StyleSheet1.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\dbContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbContext.edmx</DependentUpon>
       <LastGenOutput>dbContext.Context.cs</LastGenOutput>
+      <DependentUpon>dbContext.edmx</DependentUpon>
     </Content>
     <Content Include="Models\dbContext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -212,7 +209,8 @@
     <Content Include="Models\dbContext.edmx.diagram">
       <DependentUpon>dbContext.edmx</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\BudgetManager20170830084214 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\BudgetManagerV220170830025024 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -238,19 +236,16 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
-    <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\SubCategories\Create.cshtml" />
-    <Content Include="Views\SubCategories\Delete.cshtml" />
-    <Content Include="Views\SubCategories\Edit.cshtml" />
-    <Content Include="Views\SubCategories\Index.cshtml" />
     <Content Include="Views\Transactions\Create.cshtml" />
     <Content Include="Views\Transactions\Delete.cshtml" />
     <Content Include="Views\Transactions\Details.cshtml" />
     <Content Include="Views\Transactions\Edit.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -287,9 +282,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>56998</DevelopmentServerPort>
+          <DevelopmentServerPort>60059</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56998/</IISUrl>
+          <IISUrl>http://localhost:60059/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

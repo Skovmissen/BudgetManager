@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Budget Manager</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
@@ -17,12 +17,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Budget Manager", "Index", "Transactions", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+<<<<<<< HEAD:BudgetManager/Views/Shared/_Layout.cshtml
+                    <li>@Html.ActionLink("Transactions", "Index", "Transactions")</li>
+                    <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
+                    <li>@Html.ActionLink("Sub Categories", "Index", "SubCategories")</li>
+=======
                     <li>@Html.ActionLink("Transaction", "Index", "Transactions")</li>
                     <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f:BudgetManagerV2/Views/Shared/_Layout.cshtml
                 </ul>
             </div>
         </div>

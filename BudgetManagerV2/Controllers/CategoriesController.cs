@@ -17,7 +17,11 @@ namespace BudgetManagerV2.Controllers
         // GET: Categories
         public ActionResult Index()
         {
+<<<<<<< HEAD
             var category = db.Category.Include(c => c.Category2);
+=======
+            var category = db.Category.Include(c => c.ParentCategory);
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
             return View(category.ToList());
         }
 
@@ -115,7 +119,11 @@ namespace BudgetManagerV2.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Category category = db.Category.Find(id);
+<<<<<<< HEAD
             if (!(category.Category1.Count > 0))
+=======
+            if (!(category.ChildrenCategory.Count > 0))
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
             {
 
                 db.Category.Remove(category);

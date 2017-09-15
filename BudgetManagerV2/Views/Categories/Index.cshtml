@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<BudgetManagerV2.Models.Category>
 
 <div id="TreeView">
+<<<<<<< HEAD
     <h2>Category Treeview</h2>
     @helper ShowTree(ICollection<BudgetManagerV2.Models.Category> cat)
     {
@@ -45,4 +46,72 @@ alert('@ViewBag.Message');
 
     </script>
 
+=======
+
+    <h2>Category Treeview</h2>
+
+    @Html.ActionLink("Create New Category", "Create", null, new { @class = "top-link fat-link" })
+
+
+    @helper ShowTree(ICollection<BudgetManagerV2.Models.Category> cat)
+    {
+
+        foreach (BudgetManagerV2.Models.Category item in cat)
+        {
+            if (cat.Last() == item)
+            {
+                @:<li class="last">
+            }
+            else
+            {
+                @:<li>
+            }
+            @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
+            if (item.ChildrenCategory.Any())
+            {
+                <ul>
+                    @ShowTree(item.ChildrenCategory)
+                </ul>
+            }
+
+            @:</li>
+        }
+
+    }
+
+    <ul class="tree">
+        @{
+            List<BudgetManagerV2.Models.Category> parents = new List<BudgetManagerV2.Models.Category>();
+            foreach (BudgetManagerV2.Models.Category item in Model)
+            {
+                if (item.Cat_ID == null)
+                {
+                    parents.Add(item);
+                }
+            }
+            @ShowTree(parents)
+            @*foreach (BudgetManagerV2.Models.Category item in parents)
+                {
+                    if (item == parents.Last())
+                    {
+                        @:<li class="last">
+                    }
+                    else
+                    {
+                        @:<li>
+                    }
+                        @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
+                        @ShowTree(item.ChildrenCategory)
+                    @:</li>
+                }*@
+        }
+    </ul>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script>
+            alert('@ViewBag.Message');
+    </script>
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
 }

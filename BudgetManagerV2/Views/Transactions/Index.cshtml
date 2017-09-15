@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<BudgetManagerV2.Models.Transaction>
 
 @{
+<<<<<<< HEAD
     ViewBag.Title = "Index";
 }
 
@@ -22,6 +23,40 @@
         </th>
         <th>
             <p>Category</p>
+=======
+    ViewBag.Title = "Transactions";
+}
+
+<h2>Transactions</h2>
+
+@Html.ActionLink("Create New", "Create", null, new { @class = "top-link fat-link"})
+
+<table class="table">
+    @using (Html.BeginForm())
+    {
+        <tr>
+            <td>
+
+                @Html.TextBox("SearchString", null, new { @placeholder = "Search in Title" })
+                <input type="submit" value="Search" id="form-control" />
+            </td>
+        </tr>
+
+
+    }
+    <tr>
+        <th>
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Value", "Index", new { sortOrder = ViewBag.ValueSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CategorySortParm })
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
         </th>
     </tr>
 
@@ -43,4 +78,8 @@
         </tr>
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
 </table>

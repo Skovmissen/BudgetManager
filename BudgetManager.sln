@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManager", "BudgetManager\BudgetManager.csproj", "{931E34C7-1F47-4093-A5BB-53AC75A86FE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManagerV2", "BudgetManagerV2\BudgetManagerV2.csproj", "{D08AAA0E-D2C7-41DF-ADE1-FF52444E46EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManagerV2", "BudgetManagerV2\BudgetManagerV2.csproj", "{D08AAA0E-D2C7-41DF-ADE1-FF52444E46EE}"
 EndProject
@@ -13,10 +13,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+<<<<<<< HEAD
 		{931E34C7-1F47-4093-A5BB-53AC75A86FE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{931E34C7-1F47-4093-A5BB-53AC75A86FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{931E34C7-1F47-4093-A5BB-53AC75A86FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{931E34C7-1F47-4093-A5BB-53AC75A86FE8}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
 		{D08AAA0E-D2C7-41DF-ADE1-FF52444E46EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D08AAA0E-D2C7-41DF-ADE1-FF52444E46EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D08AAA0E-D2C7-41DF-ADE1-FF52444E46EE}.Release|Any CPU.ActiveCfg = Release|Any CPU

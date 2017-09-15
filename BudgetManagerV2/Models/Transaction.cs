@@ -11,11 +11,15 @@ namespace BudgetManagerV2.Models
 {
     using System;
     using System.Collections.Generic;
+<<<<<<< HEAD
     using System.ComponentModel;
+=======
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
     using System.ComponentModel.DataAnnotations;
 
     public partial class Transaction
     {
+<<<<<<< HEAD
 
         [Required]
         public int Id { get; set; }
@@ -28,6 +32,18 @@ namespace BudgetManagerV2.Models
         public Nullable<int> FK_Category { get; set; }
         [DisplayName("Pick a category")]
         [Required(ErrorMessage = "Please fill in a category")]
+=======
+        public int Id { get; set; }
+        [Required(ErrorMessage = "Value is a required field")]
+        public Nullable<double> Value { get; set; }
+        [Required(ErrorMessage = "Text is a required field")]
+        public string Text { get; set; }
+        [Required(ErrorMessage = "Date is a required field")]
+        public DateTime Date { get; set; }
+        [Required(ErrorMessage = "Category is a required field")]
+        public Nullable<int> FK_Category { get; set; }
+    
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
         public virtual Category Category { get; set; }
     }
 }
