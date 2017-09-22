@@ -10,96 +10,100 @@ using BudgetManagerV2.Models;
 
 namespace BudgetManagerV2.Controllers
 {
-
     public class TransactionsController : Controller
     {
-
         private BudgetManagerEntities db = new BudgetManagerEntities();
 
         // GET: Transactions
-            public ActionResult Index(string sortOrder, string searchString)
+<<<<<<< HEAD
+        public ActionResult Index()
+        {
+            var transaction = db.Transaction.Include(t => t.Category);
+=======
+        public ActionResult Index(string sortOrder, string searchString)
+        {
+
+            ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.ValueSortParm = sortOrder == "Value" ? "value_desc" : "Value";
+            ViewBag.CategorySortParm = sortOrder == "FK_Category" ? "category_desc" : "FK_Category";
+
+            IQueryable<Transaction> transaction = db.Transaction.Include(t => t.Category);
+            int searchNumber;
+            if (String.IsNullOrEmpty(searchString))
             {
-
-                ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
-                ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-                ViewBag.ValueSortParm = sortOrder == "Value" ? "value_desc" : "Value";
-                ViewBag.CategorySortParm = sortOrder == "FK_Category" ? "category_desc" : "FK_Category";
-
-                IQueryable<Transaction> transaction = db.Transaction.Include(t => t.Category);
-                int searchNumber;
-                if (String.IsNullOrEmpty(searchString))
-                {
-                    ViewBag.Message = "Your string is empty";
-                }
-                else if (transaction.Where(t => t.Text.Contains(searchString)).Count() > 0)
-                {
-                    transaction = transaction.Where(t => t.Text.Contains(searchString));
-                }
-                else if (int.TryParse(searchString, out searchNumber))
-                {
-                    transaction = transaction.Where(t => t.Value == searchNumber);
-                }
-
-
-                transaction = transaction.OrderBy(s => s.Date);
-                if (sortOrder == "name")
-                {
-                    transaction = transaction.OrderBy(t => t.Text);
-                }
-                if (sortOrder == "name_desc")
-                {
-                    transaction = transaction.OrderByDescending(t => t.Text);
-
-                }
-                else if (sortOrder == "Date")
-                {
-                    transaction = transaction.OrderBy(t => t.Date);
-                }
-                else if (sortOrder == "date_desc")
-                {
-                    transaction = transaction.OrderByDescending(t => t.Date);
-                }
-                else if (sortOrder == "Value")
-                {
-                    transaction = transaction.OrderBy(t => t.Value);
-                }
-                else if (sortOrder == "value_desc")
-                {
-                    transaction = transaction.OrderByDescending(t => t.Value);
-                }
-                else if (sortOrder == "FK_Category")
-                {
-                    transaction = transaction.OrderBy(t => t.Category.Name);
-                }
-                else if (sortOrder == "category_desc")
-                {
-                    transaction = transaction.OrderByDescending(t => t.Category.Name);
-                }
-
-                return View(transaction.ToList());
+                ViewBag.Message = "Your string is empty";
             }
-        
+            else if (transaction.Where(t => t.Text.Contains(searchString)).Count() > 0)
+            {
+                transaction = transaction.Where(t => t.Text.Contains(searchString));
+            }
+            else if (int.TryParse(searchString, out searchNumber))
+            {
+                transaction = transaction.Where(t => t.Value == searchNumber);
+            }
+
+
+            transaction = transaction.OrderBy(s => s.Date);
+            if (sortOrder == "name")
+            {
+                transaction = transaction.OrderBy(t => t.Text);
+            }
+            if (sortOrder == "name_desc")
+            {
+                transaction = transaction.OrderByDescending(t => t.Text);
+
+            }
+            else if (sortOrder == "Date")
+            {
+                transaction = transaction.OrderBy(t => t.Date);
+            }
+            else if (sortOrder == "date_desc")
+            {
+                transaction = transaction.OrderByDescending(t => t.Date);
+            }
+            else if (sortOrder == "Value")
+            {
+                transaction = transaction.OrderBy(t => t.Value);
+            }
+            else if (sortOrder == "value_desc")
+            {
+                transaction = transaction.OrderByDescending(t => t.Value);
+            }
+            else if (sortOrder == "FK_Category")
+            {
+                transaction = transaction.OrderBy(t => t.Category.Name);
+            }
+            else if (sortOrder == "category_desc")
+            {
+                transaction = transaction.OrderByDescending(t => t.Category.Name);
+            }
+
+>>>>>>> ecd30b5f8e7ed4399f0a40b8a669fb821436419f
+            return View(transaction.ToList());
+        }
+
         // GET: Transactions/Details/5
         public ActionResult Details(int? id)
+        {
+            if (id == null)
             {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                Transaction transaction = db.Transaction.Find(id);
-                if (transaction == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(transaction);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            Transaction transaction = db.Transaction.Find(id);
+            if (transaction == null)
+            {
+                return HttpNotFound();
+            }
+            return View(transaction);
+        }
 
-            // GET: Transactions/Create
-            public ActionResult Create()
-            {
-                ViewBag.FK_Category = new SelectList(db.Category, "Id", "Name");
-                return View();
-            }
+        // GET: Transactions/Create
+        public ActionResult Create()
+        {
+            ViewBag.FK_Category = new SelectList(db.Category, "Id", "Name");
+            return View();
+        }
 
         // POST: Transactions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -188,4 +192,3 @@ namespace BudgetManagerV2.Controllers
         }
     }
 }
-
